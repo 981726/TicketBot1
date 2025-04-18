@@ -7,7 +7,6 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBit
 client.once('ready', async () => {
     console.log('Ready!');
 
-    // Deploy slash commands
     for (const command of deployedCommands) {
         const createdCommand = await client.guilds.cache.get(guildId)?.commands.create(command);
         console.log(createdCommand);
@@ -52,7 +51,7 @@ client.on('interactionCreate', async interaction => {
     // Create a private channel
     const channel = await guild.channels.create({
         name: `ticket-${user.username}`,
-        type: 0, // 'GUILD_TEXT'
+        type: 0,
         permissionOverwrites: [
             {
                 id: guild.id,
